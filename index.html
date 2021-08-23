@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Mon Application Vue.js</title>
+      <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>{{ message_titre }}</h1>
+        <p>{{ message_corp }}</p>
+       
+        <button @click="showModal = !showModal">Display Modal</button>
+        <div v-show="showModal" class="modal">maModal</div>
+
+      
+
+    
+
+
+        <ul>
+            <li v-for="item in ShoppingCart">
+                <a v-bind:href="item.url">{{ item.label }} </a>: {{ item.cost }}€</li>
+            
+        </ul>
+        <p>Prix total : {{ TotalPanier }} €</p>
+
+    <button @click="showColor">Cliquez ici !</button>
+<h2>Changer ma couleur préférée</h2>
+<label for="change-color">Changer la couleur</label>
+<input id="change-color" type="text" @keyup.enter="changeColor"/>
+</div>
+     
+   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+    
+    <script>
+        
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message_titre : "Panier d'achat",
+                message_corp : "détail :",
+                showModal: false,
+                favoriteColor:'bleu',
+                ShoppingCart: [
+                    {
+                        label: 'Pommes',
+                        cost: 10,
+                        url:'/pommes.html'
+                    },
+                    {
+                        label: 'Poires',
+                        cost: 6,
+                        url:'/poires.html'
+                    },
+                    {
+                        label: 'Cerises',
+                        cost: 8,
+                        url:'/cerises.html'
+                    }
+                ]
+            },
+            computed:{
+                TotalPanier(){
+                   let total=0
+                   this.ShoppingCart.forEach(item => { 
+                       total += item.cost
+                   })
+                    return total
+                },
+                label(){
+                    return ': ' + this.favoriteColor
+                }
+            },
+            methods: {
+                showColor(){
+                    alert(this.favoriteColor)
+                },
+                alertColor(colorlabel){
+                    alert('ma couleur préférée est ' + colorlabel)
+                },
+                changeColor(){
+                  //  this.favoriteColor = document.getElementById('change-color').value
+                  this.favoriteColor ='turquoise'
+                  this.alertColor(this.label)
+                }
+
+            }
+        })
+   
+    </script>
+
+
+
+</body>
+</html>

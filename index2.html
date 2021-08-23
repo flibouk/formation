@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Mon Application Vue.js</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Bonjour {{ username }}</h1>
+        
+
+
+        <label for="username">Nom d'utilisateur</label>
+        <input id="username" type="text" v-model="username" />
+        <label for="pw">Mot de passe</label>
+        <input id="pw" type="password" v-model="password" />
+
+
+
+
+    <button @click="showColor">Cliquez ici !</button>
+<h2>Changer ma couleur préférée : {{ favoriteColor }}</h2>
+<label for="change-color">Changer la couleur</label>
+<input id="change-color" type="text" v-model="favoriteColor"/>
+</div>
+     
+   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+    
+    <script>
+        
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message_titre : "Panier d'achat",
+                favoriteColor:'bleu',
+                username:''
+            },
+            methods: {
+              
+                showColor(){
+                    alert(this.favoriteColor)
+                }
+
+            }
+        });
+   
+    </script>
+
+
+
+</body>
+</html>
